@@ -10,7 +10,7 @@ android {
     defaultConfig {
         applicationId "com.example.cryptoapp"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -68,7 +68,7 @@ dependencies {
     annotationProcessor("androidx.room:room-compiler:$room_version")
 
     // To use Kotlin annotation processing tool (kapt)
-    kapt("androidx.room:room-compiler:$room_version")
+    kapt("androidx.room:room-compiler:2.4.3")
     // To use Kotlin Symbol Processing (KSP)
     //ksp("androidx.room:room-compiler:$room_version")
     // optional - Paging 3 Integration
