@@ -1,6 +1,5 @@
 package com.example.cryptoapp.api
 
-import io.reactivex.rxjava3.internal.schedulers.RxThreadFactory
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory

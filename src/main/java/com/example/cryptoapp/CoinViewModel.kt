@@ -2,9 +2,12 @@ package com.example.cryptoapp
 
 import android.app.Application
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import com.example.cryptoapp.api.ApiFactory
 import com.example.cryptoapp.database.AppDatabase
+import com.example.cryptoapp.databinding.ActivityMainBinding
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
@@ -17,7 +20,7 @@ class CoinViewModel(application: Application): AndroidViewModel(application) {
     fun loadData(){
         val disposable = ApiFactory.apiService.getTopCoinsInfo()
             .subscribeOn(Schedulers.io())
-            .observeOn(Schedulers.computation())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 Log.d("LOADING_DATA_TEST", it.toString())
             }, {
