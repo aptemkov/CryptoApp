@@ -15,6 +15,8 @@ class CoinInfoAdapter: RecyclerView.Adapter<CoinInfoAdapter.CoinInfoViewHolder>(
         notifyDataSetChanged()
     }
 
+    var onCoinClickListener: OnCoinClickListener? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoinInfoViewHolder {
         val binding = ItemCoinInfoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CoinInfoViewHolder(binding)
@@ -29,8 +31,12 @@ class CoinInfoAdapter: RecyclerView.Adapter<CoinInfoAdapter.CoinInfoViewHolder>(
         with(holder) {
             tvSymbols.text = coin.fromSymbol + " / " + coin.toSymbol
             tvPrice.text = coin.price
-            tvLastUpdate.text = coin.getFormattedTime()
+            tvLastUpdate.text = "Время последнего обновления: " + coin.getFormattedTime()
             Picasso.get().load(coin.getFullImageUrl()).into(ivLogoCoin)
+        }
+
+        holder.itemView.setOnClickListener {
+            onCoinClickListener?.onCoinClick(coin)
         }
     }
 
@@ -40,5 +46,9 @@ class CoinInfoAdapter: RecyclerView.Adapter<CoinInfoAdapter.CoinInfoViewHolder>(
         val tvPrice = itemCoinInfoBinding.tvPrice
         val tvLastUpdate = itemCoinInfoBinding.tvLastUpdate
 
+    }
+
+    interface OnCoinClickListener {
+        fun onCoinClick(coinPriceInfo: CoinPriceInfo)
     }
 }
